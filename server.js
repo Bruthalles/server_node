@@ -4,7 +4,10 @@ import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
 
 //await connectDB(process.env.STRING_CONEXAO);
+
 const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const porta = 3000;
 const urlBase = "localhost:" + porta ;
@@ -45,7 +48,7 @@ app.get("/posts",(req,res)=>{
 });
 
 app.get("/",(req,res)=>{
-    const filePath = path.join(__dirname,'public','btc.html');
+    const filePath = path.join(__dirname,'public','/public/btc.html');
     res.sendFile(__dirname + "/btc.html");
 });
 
