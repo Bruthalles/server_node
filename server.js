@@ -1,8 +1,11 @@
 import express from "express";
+import connectDB from "./src/config/dbconfig.js";
 
-const express = require('express');
+await connectDB(process.env.STRING_CONEXAO);
+
 const app = express();
 const porta = 3000;
+
 
 const posts = [
     {
