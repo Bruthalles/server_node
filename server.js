@@ -1,7 +1,7 @@
 import express from "express";
 import connectDB from "./src/config/dbconfig.js";
 
-await connectDB(process.env.STRING_CONEXAO);
+//await connectDB(process.env.STRING_CONEXAO);
 
 const app = express();
 const porta = 3000;
@@ -38,14 +38,14 @@ app.listen(porta, ()=> {
 })
 
 app.get("/posts",(req,res)=>{
-    res.status(404).json(posts)
-})
+    res.status(200).json(posts);
+});
 
-app.get("/",(req,res)=>{
-    res.sendFile(__dirname + "/btc.html");
-})
+app.get("/btc",(req,res)=>{
+    res.status(200).sendFile("/btc.html");
+});
 
 app.get("/posts/:id",(req,res)=>{
     const index = buscapostid(req.params.id);
     res.status(200).json(posts[index]);
-})
+});
