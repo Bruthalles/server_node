@@ -1,10 +1,13 @@
 import express from "express";
+import path from 'path';
+import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
 
 //await connectDB(process.env.STRING_CONEXAO);
-
+const __filename = fileURLToPath(import.meta.url);
 const app = express();
 const porta = 3000;
+const urlBase = "localhost:" + porta ;
 
 
 const posts = [
@@ -34,15 +37,16 @@ function buscapostid(id){
 }
 
 app.listen(porta, ()=> {
-    console.log("servidor escutando...");
+    console.log("servidor escutando em ", urlBase);
 })
 
 app.get("/posts",(req,res)=>{
     res.status(200).json(posts);
 });
 
-app.get("/btc",(req,res)=>{
-    res.status(200).sendFile("/btc.html");
+app.get("/",(req,res)=>{
+    const filePath = path.join(__dirname,'public','btc.html');
+    res.sendFile(__dirname + "/btc.html");
 });
 
 app.get("/posts/:id",(req,res)=>{
