@@ -22,17 +22,12 @@
     "email": "",
     "url": ""
   },
-  "contributors": [
-
-  ],
+  "contributors": [],
   "scripts": {
-    "dev": "",
+    "dev": "node --watch --env-file=.env index.js",
     "test": ""
   },
   "dependencies": {
-
-  },
-  "devDependencies": {
-
+    "mongodb": "^6.11.0"
   }
 }

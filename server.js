@@ -1,6 +1,48 @@
 import express from "express";
 
-const app = require(express);
+const express = require('express');
+const app = express();
+const porta = 3000;
 
-app.use(process.json);
+const posts = [
+    {
+      id:1,
+      descricao: "gato voador",
+      imagem: "https://placecats.com/300/300"
+    },
+    {
+      id:2,
+      descricao: "gato ninja",
+      imagem: "https://placecats.com/300/300"
+    },
+    {
+      id:3,
+      descricao: "gato presidente",
+      imagem: "https://placecats.com/300/300"
+    }
+  ];
 
+app.use(express.json());
+
+function buscapostid(id){
+    return posts.findIndex((post)=>{
+        return post.id === Number(id);
+    });
+}
+
+app.listen(porta, ()=> {
+    console.log("servidor escutando...");
+})
+
+app.get("/posts",(req,res)=>{
+    res.status(404).json(posts)
+})
+
+app.get("/",(req,res)=>{
+    res.sendFile(__dirname + "/btc.html");
+})
+
+app.get("/posts/:id",(req,res)=>{
+    const index = buscapostid(req.params.id);
+    res.status(200).json(posts[index]);
+})
