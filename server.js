@@ -48,7 +48,7 @@ app.get("/posts",(req,res)=>{
 });
 
 app.get("/",(req,res)=>{
-    const filePath = path.join(__dirname,'public','/public/btc.html');
+    const filePath = path.join(__dirname,'public','./src/btc.html');
     res.sendFile(__dirname + "/btc.html");
 });
 
