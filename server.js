@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
 
-//await connectDB(process.env.STRING_CONEXAO);
+await connectDB(process.env.STRING_CONEXAO);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
