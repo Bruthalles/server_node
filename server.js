@@ -3,8 +3,11 @@ import path from 'path';
 import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
 
+
 await connectDB(process.env.STRING_CONEXAO);
 
+//configuração necessária pro servidor responder com arquivos 
+//usado para teste de debug com o btc.html 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -47,7 +50,7 @@ app.get("/posts",(req,res)=>{
     res.status(200).json(posts);
 });
 
-app.get("/",(req,res)=>{
+app.get("/btc",(req,res)=>{
     const filePath = path.join(__dirname,'public','./src/btc.html');
     res.sendFile(__dirname + "/btc.html");
 });

@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "instabyte-back-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,8 +19,8 @@
   "keywords": [],
   "author": {
     "name": "",
-    "email": "",
-    "url": ""
+    "email": "thallesgmkr@gmail.com",
+    "url": "https://github.com/Bruthalles"
   },
   "contributors": [],
   "scripts": {
