@@ -2,7 +2,7 @@ import express from "express";
 import path from 'path';
 import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
-
+import posts from "./local-posts.cjs";
 
 await connectDB(process.env.STRING_CONEXAO);
 
@@ -16,23 +16,6 @@ const porta = 3000;
 const urlBase = "localhost:" + porta ;
 
 
-const posts = [
-    {
-      id:1,
-      descricao: "gato voador",
-      imagem: "https://placecats.com/300/300"
-    },
-    {
-      id:2,
-      descricao: "gato ninja",
-      imagem: "https://placecats.com/300/300"
-    },
-    {
-      id:3,
-      descricao: "gato presidente",
-      imagem: "https://placecats.com/300/300"
-    }
-  ];
 
 app.use(express.json());
 
