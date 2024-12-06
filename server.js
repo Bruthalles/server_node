@@ -2,9 +2,10 @@ import express from "express";
 import path from 'path';
 import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
+/* testando modulos locais
 import posts from "./local-posts.cjs";
-
-await connectDB(process.env.STRING_CONEXAO);
+*/
+const conexao = await connectDB(process.env.STRING_CONEXAO);
 
 //configuração necessária pro servidor responder com arquivos 
 //usado para teste de debug com o btc.html 
@@ -24,13 +25,19 @@ function buscapostid(id){
         return post.id === Number(id);
     });
 }
-
+async function getAllPosts() {
+  const db = conexao.db("imersao-beckend");
+  const colecao = db.collection("posts");
+  return colecao.find().toArray();
+  
+}
 app.listen(porta, ()=> {
     console.log("servidor escutando em ", urlBase);
 })
 
-app.get("/posts",(req,res)=>{
-    res.status(200).json(posts);
+app.get("/posts", async(req,res)=>{
+  const posts = await getAllPosts();
+  res.status(200).json(posts);
 });
 
 app.get("/btc",(req,res)=>{
@@ -38,7 +45,7 @@ app.get("/btc",(req,res)=>{
     res.sendFile(__dirname + "/btc.html");
 });
 
-app.get("/posts/:id",(req,res)=>{
+/*app.get("/posts/:id",(req,res)=>{
     const index = buscapostid(req.params.id);
     res.status(200).json(posts[index]);
-});
+});*/
