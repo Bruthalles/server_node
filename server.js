@@ -1,16 +1,10 @@
 import express from "express";
-import path from 'path';
-import { fileURLToPath } from "url";
 import connectDB from "./src/config/dbconfig.js";
+import pageHome from "./pages/home/news-btc.js";
 /* testando modulos locais
 import posts from "./local-posts.cjs";
 */
 const conexao = await connectDB(process.env.STRING_CONEXAO);
-
-//configuração necessária pro servidor responder com arquivos 
-//usado para teste de debug com o btc.html 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const porta = 3000;
@@ -40,10 +34,7 @@ app.get("/posts", async(req,res)=>{
   res.status(200).json(posts);
 });
 
-app.get("/btc",(req,res)=>{
-    const filePath = path.join(__dirname,'public','./src/btc.html');
-    res.sendFile(__dirname + "/btc.html");
-});
+pageHome();
 
 /*app.get("/posts/:id",(req,res)=>{
     const index = buscapostid(req.params.id);
