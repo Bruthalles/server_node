@@ -1,29 +1,14 @@
 import express from "express";
-import path from 'path';
-import { fileURLToPath } from "url";
-import connectDB from "./src/config/dbconfig.js";
-/* testando modulos locais
+import routes from "./src/routes/postsRoutes.js";
+/* testando objetos locais
 import posts from "./local-posts.cjs";
 */
-const conexao = await connectDB(process.env.STRING_CONEXAO);
-
-//configuração necessária pro servidor responder com arquivos 
-//usado para teste de debug com o btc.html 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
 const porta = 3000;
 const urlBase = "localhost:" + porta ;
 
-app.use(express.json());
+routes(app);
 
-async function getAllPosts() {
-  const db = conexao.db("imersao-beckend");
-  const colecao = db.collection("posts");
-  return colecao.find().toArray();
-  
-}
 app.listen(porta, ()=> {
     console.log("servidor escutando em ", urlBase);
 })

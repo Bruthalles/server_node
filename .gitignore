@@ -2,4 +2,3 @@ node_modules
 chaveapi.txt
 chave-api-btc.txt
 .env
-/controllers
