@@ -2,3 +2,5 @@ node_modules
 chaveapi.txt
 chave-api-btc.txt
 .env
+package-lock.json
+package.json
