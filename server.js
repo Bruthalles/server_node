@@ -11,7 +11,13 @@ const app = express();
 const porta = 3000;
 const urlBase = "localhost:" + porta ;
 
-app.use(cors());
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // permite qualquer origem
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+  });
+  
 app.use(express.json());
 
 require("dotenv").config();
