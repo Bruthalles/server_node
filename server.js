@@ -1,4 +1,3 @@
-import express from "express";
 //import routes from "./src/routes/postsRoutes.js";
 /* testando objetos locais
 import posts from "./local-posts.cjs";
@@ -23,7 +22,7 @@ app.use(express.json());
 require("dotenv").config();
 const bap = process.env.BREVO_API_KEY;
 
-routes(app);
+//routes(app);
 
 app.listen(porta, ()=> {
     console.log("servidor escutando em ", urlBase);
