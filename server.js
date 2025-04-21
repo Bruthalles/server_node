@@ -11,10 +11,6 @@ const app = express();
 const porta = 3000;
 const urlBase = "localhost:" + porta ;
 
-
-app.use(cors());
-app.use(express.json());
-
 require("dotenv").config();
 const bap = process.env.BREVO_API_KEY;
 
@@ -23,6 +19,8 @@ routes(app);
 app.listen(porta, ()=> {
     console.log("servidor escutando em ", urlBase);
 })
+app.use(cors());
+app.use(express.json());
 
 app.post("/send",async (req , res)=>{
     const {name,email} = req.body;
