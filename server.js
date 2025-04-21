@@ -3,11 +3,14 @@ import express from "express";
 /* testando objetos locais
 import posts from "./local-posts.cjs";
 */
+const express = require("express");
+const cors = require("cors");
+const fetch = require("node-fetch");
+
 const app = express();
 const porta = 3000;
 const urlBase = "localhost:" + porta ;
 
-const fetch = require("node-fetch");
 require("dotenv").config();
 const bap = process.env.BREVO_API_KEY;
 
@@ -16,7 +19,7 @@ routes(app);
 app.listen(porta, ()=> {
     console.log("servidor escutando em ", urlBase);
 })
-
+app.use(cors());
 app.use(express.json());
 
 app.post("/send",async (req , res)=>{
