@@ -45,6 +45,7 @@ app.post("/send",async (req , res)=>{
     `;
 
     try{
+        console.log(bap);
         const response = await fetch("https://api.brevo.com/v3/smtp/email",{
             method: "POST",
             headers: {
