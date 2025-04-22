@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     next();
   });
   
-const bap = process.env.BREVO_API_KEY;
+
 
 //routes(app);
 
@@ -45,12 +45,12 @@ app.post("/send",async (req , res)=>{
     `;
 
     try{
-        console.log(bap);
+        
         const response = await fetch("https://api.brevo.com/v3/smtp/email",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "api-key": bap
+                "api-key": process.env.BREVO_API_KEY
             },
             body: JSON.stringify({
                 sender: {name: "Thalles Brumatti", email: "thallesgmkr@gmail.com"},
