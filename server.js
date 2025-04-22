@@ -3,12 +3,18 @@
 import posts from "./local-posts.cjs";
 */
 const express = require("express");
-const cors = require("cors");
-const fetch = require("node-fetch");
+const cors    = require("cors");
+const fetch   = require("node-fetch");
+require("dotenv").config();
 
 const app = express();
-const porta = 3000;
-const urlBase = "localhost:" + porta ;
+const PORT = process.env.PORT || 3000;
+// const porta = 3000;
+// const urlBase = "localhost:" + porta ;
+
+app.use(cors());
+app.options("*",cors());
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); // permite qualquer origem
@@ -17,16 +23,13 @@ app.use((req, res, next) => {
     next();
   });
   
-app.use(express.json());
-
-require("dotenv").config();
 const bap = process.env.BREVO_API_KEY;
 
 //routes(app);
 
-app.listen(porta, ()=> {
-    console.log("servidor escutando em ", urlBase);
-})
+// app.listen(porta, ()=> {
+//     console.log("servidor escutando em ", urlBase);
+// })
 
 app.post("/send",async (req , res)=>{
     const {name,email} = req.body;
@@ -70,3 +73,5 @@ app.post("/send",async (req , res)=>{
         res.status(500).json({message: "erro interno no sevidor"});
     }
 });
+
+app.listen(PORT, ()=> console.log("servidor rodando na porta ${PORT}"));
